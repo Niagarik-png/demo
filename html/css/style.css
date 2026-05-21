@@ -1,0 +1,96 @@
+@font-face {
+    font-family: "Oswald-Light";
+    src: url("/fonts/Oswald/Oswald-Light.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Oswald-Regular";
+    src: url("/fonts/Oswald/Oswald-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Oswald-Medium";
+    src: url("/fonts/Oswald/Oswald-Medium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Oswald-Bold";
+    src: url("/fonts/Oswald/Oswald-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+
+:root {
+    --bs-body-font-family: "Oswald-Regular";
+    --cc-red: #DC143C;
+    --cc-green: #006400;
+    --cc-creamy: #FFFDD0;
+    --cc-gold: #DAA520;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Oswald-Bold";
+}
+
+h1 {
+    font-size: 36px;
+    color: var(--cc-red);
+}
+
+h2 {
+    font-size: 24px;
+    color: var(--cc-gold);
+}
+
+h3 {
+    font-size: 18px;
+    color: var(--cc-gold);
+}
+
+.helper-text {
+    font-size: 12px;
+    color: var(--cc-green);
+}
+
+.link-primary {
+    --bs-primary-rgb: 0, 100, 0;
+    --bs-link-hover-color-rgb: 0, 100, 0;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--cc-green);
+    --bs-btn-color: var(--cc-creamy);
+    --bs-btn-border-color: var(--cc-green);
+    --bs-btn-hover-bg: color-mix(in srgb, var(--cc-green), transparent 20%);
+    --bs-btn-hover-border-color: color-mix(in srgb, var(--cc-green), transparent 20%);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--cc-green);
+    --bs-btn-border-color: var(--cc-green);
+    --bs-btn-hover-bg: var(--cc-green);
+    --bs-btn-hover-border-color: var(--cc-green);
+    --bs-btn-hover-color: var(--cc-creamy);
+}
+
+.carousel-image {
+    height: 400px;
+    object-fit: cover;
+}
+
+

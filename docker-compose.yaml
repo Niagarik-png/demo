@@ -1,0 +1,51 @@
+services:
+  php:
+    build: .
+    volumes:
+      - ./html:/var/www/html
+    depends_on:
+      - database
+    ports:
+      - "80:80"
+    networks:
+      internal:
+        ipv4_address: 10.0.0.4
+  database:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=demo
+      - MYSQL_DATABASE=demo
+      - MYSQL_USER=demo
+      - MYSQL_PASSWORD=demo
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      internal:
+        ipv4_address: 10.0.0.2
+
+  php_my_admin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+    depends_on:
+      - database
+    ports:
+      - "8080:80"
+    networks:
+      internal:
+        ipv4_address: 10.0.0.3
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/24
+          gateway: 10.0.0.1
+
+volumes:
+  db_data:
