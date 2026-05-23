@@ -44,6 +44,7 @@ if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 <body>
 <?= template('header') ?>
 <div class="container">
+    <h1 class="mt-3">Регистрация</h1>
     <?php if (!empty($errors)): ?>
         <div class="alert alert-danger" role="alert">
             <ul>

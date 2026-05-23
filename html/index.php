@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/app/load.php";
+
 ?>
 
 <!doctype html>
@@ -14,19 +15,20 @@ require_once __DIR__ . "/app/load.php";
         <div id="carousel" class="carousel slide mt-3" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="./images/1.jpeg" class="d-block w-100" alt="Slide 1">
+                    <img src="./images/1.webp" class="d-block w-100" alt="Slide 1">
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/2.jpg" class="d-block w-100" alt="Slide 2">
+                    <img src="./images/2.webp" class="d-block w-100" alt="Slide 2">
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/3.jpg" class="d-block w-100" alt="Slide 3">
+                    <img src="./images/3.webp" class="d-block w-100" alt="Slide 3">
                 </div>
                 <div class="carousel-item">
-                    <img src="./images/4.jpg" class="d-block w-100" alt="Slide 4">
+                    <img src="./images/4.webp" class="d-block w-100" alt="Slide 4">
                 </div>
             </div>
         </div>
     </div>
+    <?= template('footer')?>
 </body>
 </html>
