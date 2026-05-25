@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['login'] = $user->login;
             $_SESSION['full_name'] = $user->full_name;
             $_SESSION['role'] = $user->role;
+            $_SESSION['id'] = $user->id;
 
             if ($_SESSION['role'] == 'admin') {
                 redirect('/admin.php');
