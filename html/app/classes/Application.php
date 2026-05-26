@@ -15,4 +15,11 @@ class Application
 
         return $stmt->execute([$userId, $roomId, $eventDate, $payment]);
     }
+
+    public static function getUserApps($userId) {
+        $pdo = Database::get();
+        $stmt = $pdo->prepare("SELECT * FROM applications WHERE user_id = ?");
+        $stmt->execute([$userId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
