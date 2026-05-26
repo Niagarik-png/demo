@@ -17,7 +17,7 @@
                         <?php if ($_SESSION["role"] === "admin"): ?>
                     <li class="nav-item">
                         <a href="/admin.php" class="nav-link">Паель-администратора</a>
-                    </li>>
+                    </li>
                         <?php endif; ?>
                 </ul>
                 <div class="dropdown">

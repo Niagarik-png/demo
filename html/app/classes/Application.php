@@ -25,7 +25,8 @@ class Application
 
     public static function getAllApps () {
         $pdo = Database::get();
-        $stmt = $pdo->querry("SELECT applications.*, rooms.name as room_name, users.full_name, users.phone FROM applications INNER JOIN rooms ON applications.room_id = rooms.id INNER JOIN users on applications.user_id = users.id");
+        $stmt = $pdo->prepare("SELECT applications.*, rooms.name as room_name, users.full_name, users.phone FROM applications INNER JOIN rooms ON applications.room_id = rooms.id INNER JOIN users on applications.user_id = users.id");
+        $stmt ->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
