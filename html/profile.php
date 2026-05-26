@@ -6,9 +6,25 @@ if (!isset($_SESSION['login'])) {
 }
 
 $userId = $_SESSION['id'];
+$errors = [];
 $msg = '';
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['send_review'])) {
+    $reviewText = trim($_POST['reviewText']);
+
+    if (empty($reviewText)) {
+        $errors[] = 'Пожалуйста, напишите отзыв )';
+    } else {
+        if (Review::create($userId, $reviewText)) {
+            $msg = 'Спасибо за ваш отзыв!';
+        } else {
+            $errors[] = 'Не удалось отправить отзыв';
+        }
+    }
+}
 $bookings = Application::getUserApps($userId);
+
+
 ?>
 
 <!doctype html>
@@ -23,9 +39,9 @@ $bookings = Application::getUserApps($userId);
         <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Помещение</th>
             <th scope="col">Дата</th>
             <th scope="col">Способ оплаты</th>
-            <th scope="col">Помещение</th>
             <th scope="col">Статус</th>
         </tr>
         </thead>
@@ -33,8 +49,8 @@ $bookings = Application::getUserApps($userId);
         <?php foreach ($bookings as $booking): ?>
             <tr>
                 <td><?= $booking['id'] ?></td>
-                <td><?= htmlspecialchars($booking['room_id']) ?></td>
-                <td><?= date('d.m.Y H:i', strtotime($booking['event_date'])) ?></td>
+                <td><?= htmlspecialchars($booking['room_name']) ?></td>
+                <td><?= date('d.m.Y', strtotime($booking['event_date'])) ?></td>
                 <td><?= htmlspecialchars($booking['payment']) ?></td>
                 <td>
                     <?php
@@ -50,6 +66,25 @@ $bookings = Application::getUserApps($userId);
         <?php endforeach; ?>
         </tbody>
     </table>
+
+    <?php if ($booking['status'] === 'Банкет завершен'): ?>
+        <div class="card mt-5 shadow-sm mb-5">
+            <div class="card-body">
+                <h4 class='card-title'>Оставить отзыв</h4>
+                <?php if (!empty($msg)) :?>
+                    <div class="alert alert-success"><?= $msg ?></div>
+                <?php endif; ?>
+                <form action="profile.php" method="post">
+                    <div class="mb-3">
+                        <textarea name="reviewText" class="form-control mb-3" rows="3" placeholder="Ваш отзыв" required></textarea>
+                        <button type="submit" name="send_review" class="btn btn-primary">Отправить отзыв</button>    
+                    </div>
+                </form>  
+            </div>
+          
+        </div>
+    <?php endif; ?>
+
 </div>
 </body>
 </html>

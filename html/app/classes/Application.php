@@ -18,8 +18,20 @@ class Application
 
     public static function getUserApps($userId) {
         $pdo = Database::get();
-        $stmt = $pdo->prepare("SELECT * FROM applications WHERE user_id = ?");
+        $stmt = $pdo->prepare("SELECT applications.*, rooms.name as room_name FROM applications INNER JOIN rooms on applications.room_id = rooms.id WHERE applications.user_id = ?;");
         $stmt->execute([$userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getAllApps () {
+        $pdo = Database::get();
+        $stmt = $pdo->querry("SELECT applications.*, rooms.name as room_name, users.full_name, users.phone FROM applications INNER JOIN rooms ON applications.room_id = rooms.id INNER JOIN users on applications.user_id = users.id");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function updateStatus ($applicationId, $newStatus) {
+        $pdo = Database::get();
+        $stmt = $pdo->prepare("UPDATE applications SET status = ? WHERE id =?");
+        $stmt-> execute([$newStatus, $applicationId]);
     }
 }
